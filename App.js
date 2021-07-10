@@ -13,6 +13,7 @@ const App = () => {
     <NavigationContainer>
         <Tab.Navigator
       tabBarOptions={{
+          showLabel: false,
           style: {
             border: 'none'
           }
