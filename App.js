@@ -1,21 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
+import HomeScreen from './src/screens/home/HomeScreen';
+import DownloadScreen from "./src/screens/download/DownloadScreen";
+import FavoriteScreen from "./src/screens/favorite/FavoriteScreen";
+import ProfileScreen from "./src/screens/profile/ProfileScreen";
 
-export default function App() {
+const Tab = createBottomTabNavigator();
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+        <Tab.Navigator
+      tabBarOptions={{
+          style: {
+            border: 'none'
+          }
+      }}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+                    <Ionicons name="md-home-outline" size={24} color={color} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Downloads"
+          component={DownloadScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+                <Ionicons name="md-download-outline" size={24} color={color}/>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Favorite"
+          component={FavoriteScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+                <Ionicons name="heart-outline" size={24} color={color}/>
+            ),
+          }}
+        /><Tab.Screen
+          name="Profile"
+          component={ProfileScreen}
+          options={{
+            tabBarIcon: ({color}) => (
+              <Ionicons name="person-outline" size={24} color={color}/>
+            ),
+          }}
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
