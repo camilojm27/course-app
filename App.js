@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import HomeScreen from './src/screens/home/HomeScreen';
+import HomeStack from "./src/screens/home/HomeStack";
 import DownloadScreen from "./src/screens/download/DownloadScreen";
 import FavoriteScreen from "./src/screens/favorite/FavoriteScreen";
 import ProfileScreen from "./src/screens/profile/ProfileScreen";
@@ -21,7 +21,7 @@ const App = () => {
       >
         <Tab.Screen
           name="Home"
-          component={HomeScreen}
+          component={HomeStack}
           options={{
             tabBarIcon: ({color}) => (
                     <Ionicons name="md-home-outline" size={24} color={color} />

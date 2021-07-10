@@ -1,65 +1,94 @@
 import React from 'react'
 import {StyleSheet, View, Text, Image, Pressable} from "react-native";
-import { AntDesign } from '@expo/vector-icons';
+import {AntDesign} from '@expo/vector-icons';
+const colorDetails = 'darkslategrey';
 
-export function BigCourseCard() {
+export function BigCourseCard({onPress}) {
     return (
-        <Pressable style={big.container}>
-            <Image style={big.image} source={require('../../../assets/img/card-template.png')}/>
-            <View style={big.horizontal}>
+        <Pressable
+            onPress={onPress}
+            style={big.container}>
+            <View>
+                <Image style={big.image} source={require('../../../assets/img/card-template.png')}/>
                 <View style={big.horizontal}>
-                    <AntDesign name="clockcircleo" size={20} color="black" />
-                    <Text>1hr 45 min</Text>
-                </View>
-                <View style={big.horizontal}>
-                    <AntDesign name="staro" size={20} color="black" />
-                    <Text>4.5</Text>
+                    <View style={big.horizontal}>
+                        <AntDesign name="clockcircleo" size={20} color={colorDetails}/>
+                        <Text style={styles.textDetails}>1hr 45 min</Text>
+                    </View>
+                    <View style={big.horizontal}>
+                        <AntDesign name="staro" size={20} color={colorDetails}/>
+                        <Text style={styles.textDetails}>4.5</Text>
+                    </View>
                 </View>
             </View>
-            <Text styles={big.title}>Advance Mathematics</Text>
+
+            <Text style={big.title}>Advance Mathematics</Text>
         </Pressable>)
 }
 
-export function SmallCourseCard() {
+export function SmallCourseCard({onPress}) {
     return (
-        <Pressable style={small.container}>
+        <Pressable onPress={onPress} style={small.container}>
+
             <Image style={small.image} source={require('../../../assets/img/card-template.png')}/>
 
-            <View >
+            <View>
                 <View style={small.horizontal}>
                     <View style={[small.horizontal, big.mr6]}>
-                        <AntDesign style={big.mr6}  name="clockcircleo" size={20} color="black" />
-                        <Text>1hr 45 min</Text>
+                        <AntDesign style={big.mr6} name="clockcircleo" size={20} color={colorDetails}/>
+                        <Text style={styles.textDetails}>1hr 45 min</Text>
                     </View>
                     <View style={small.horizontal}>
-                        <AntDesign style={big.mr6} name="staro" size={20} color="black" />
-                        <Text>4.5</Text>
+                        <AntDesign style={big.mr6} name="staro" size={20} color={colorDetails}/>
+                        <Text style={styles.textDetails}>4.5</Text>
                     </View>
                 </View>
 
-                <Text styles={small.title}>Advance Mathematics</Text>
-
+                <Text style={small.title}>Advance Mathematics</Text>
             </View>
         </Pressable>
     )
 }
 
+const styles = StyleSheet.create({
+    shadow: {
+        shadowColor: '#7F5DF0',
+        shadowOffset: {
+            width: 0,
+            height: 10,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.5,
+        elevation: 5
+    },
+    textDetails: {
+        color: colorDetails,
+        fontFamily: 'RobotoCondensed_400Regular',
+
+    }
+})
+
 const big = StyleSheet.create({
     container: {
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-around',
         width: 200,
         height: 250,
-        backgroundColor: '#36AA89',
+        backgroundColor: 'rgba(54,170,137,0.75)',
         borderRadius: 25,
-        margin: 10
+        margin: 10,
+        ...styles.shadow
     },
     horizontal: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
     },
     title: {
-      fontWeight: '600',
+        color: '#2A3534',
+        fontWeight: '700',
+        fontSize: 20,
+        marginLeft: 15
     },
     image: {
         width: 150,
@@ -78,9 +107,10 @@ const small = StyleSheet.create({
         justifyContent: 'space-evenly',
         height: 100,
         width: 340,
-        margin: 'auto',
+        margin: 10,
         backgroundColor: '#fff',
-        borderRadius: 25
+        borderRadius: 25,
+        ...styles.shadow
     },
     horizontal: {
         flexDirection: 'row',
@@ -88,7 +118,7 @@ const small = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-      fontWeight: '600',
+        fontWeight: '600',
     },
     image: {
         width: 70,

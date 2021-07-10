@@ -1,47 +1,99 @@
-import {StatusBar} from 'expo-status-bar';
 import React from 'react';
-import {StyleSheet, Text, View, ScrollView, TextInput} from 'react-native';
-import {EvilIcons} from '@expo/vector-icons';
+import {Pressable, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {BigCourseCard, SmallCourseCard} from "./CourseCard";
+import {EvilIcons} from "@expo/vector-icons";
+import {RobotoCondensed_400Regular, RobotoCondensed_700Bold, useFonts,} from '@expo-google-fonts/dev';
+import AppLoading from "expo-app-loading";
 
-export default function HomeScreen() {
-    return (
-        <View style={styles.container}>
-            <EvilIcons name="bell" size={24} color="black"/>
-            <Text>Hi Jahin</Text>
-            <Text>Ready to learn?</Text>
-            <TextInput placeholder={'Search for courses'} style={styles.input}>
-            </TextInput>
-            <ScrollView styles={styles.scroll} horizontal>
-                <BigCourseCard/>
-                <BigCourseCard/>
-                <BigCourseCard/>
-                <BigCourseCard/>
-                <BigCourseCard/>
+
+export default function HomeScreen({navigation: {navigate}}) {
+
+    let [fontsLoaded] = useFonts({
+        RobotoCondensed_400Regular,
+        RobotoCondensed_700Bold,
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading/>;
+    } else
+        return (
+            <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
+                <Text style={styles.textWelcome}>Hi Jahin,</Text>
+                <Text style={styles.title}>Ready to learn?</Text>
+                <Pressable style={styles.search}>
+                    <EvilIcons style={styles.searchIcon} name="search" size={24} color="grey"/>
+                    <TextInput style={styles.searchInput} placeholder={'Search for courses'}/>
+                </Pressable>
+
+                <ScrollView showsHorizontalScrollIndicator={false} styles={styles.scroll} horizontal>
+                    <BigCourseCard onPress={() =>
+                        navigate('CourseScreen')}/>
+                    <BigCourseCard onPress={() =>
+                        navigate('CourseScreen')}/>
+                    <BigCourseCard onPress={() =>
+                    navigate('CourseScreen')}/>
+                    <BigCourseCard onPress={() =>
+                    navigate('CourseScreen')}/>
+                </ScrollView>
+                <Text style={styles.subtitle}>Popular Courses</Text>
+                <View>
+                    <SmallCourseCard onPress={() =>
+                        navigate('CourseScreen')}/>
+                    <SmallCourseCard onPress={() =>
+                        navigate('CourseScreen')}/>
+                    <SmallCourseCard onPress={() =>
+                        navigate('CourseScreen')}/>
+                </View>
             </ScrollView>
-            <Text>Popular Courses</Text>
-            <ScrollView>
-                <SmallCourseCard/>
-            </ScrollView>
-        </View>
-    );
+        );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: 'whitesmoke',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    scroll: {
-    },
-    input: {
-        height: 40,
-        width: '80%',
-        margin: 12,
-        borderWidth: 1,
         padding: 10,
-        borderRadius: 25,
     },
+    scroll: {},
+    search: {
+        position: 'relative',
+        height: 50,
+        width: '90%',
+        margin: 12,
+        padding: 10,
+        borderRadius: 9,
+        backgroundColor: 'white'
+    },
+    searchIcon: {
+        position: 'absolute',
+        top: '50%',
+        left: 5
+    },
+    searchInput: {
+        marginLeft: 20
+    },
+    textWelcome: {
+        alignSelf: 'flex-start',
+        margin: 5,
+        fontFamily: 'RobotoCondensed_400Regular',
+
+    },
+    title: {
+        fontSize: 34,
+        alignSelf: 'flex-start',
+        margin: 10,
+        fontFamily: 'RobotoCondensed_700Bold',
+        letterSpacing: 0.3,
+
+    },
+    subtitle: {
+        fontSize: 24,
+        alignSelf: 'flex-start',
+        margin: 10,
+        fontFamily: 'RobotoCondensed_700Bold',
+        letterSpacing: 0.3,
+
+    },
+
 });
