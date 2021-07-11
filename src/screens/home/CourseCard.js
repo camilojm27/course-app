@@ -1,52 +1,32 @@
 import React from 'react'
-import {StyleSheet, View, Text, Image, Pressable} from "react-native";
-import {AntDesign} from '@expo/vector-icons';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from "react-native";
+import TimeStart from "../../components/TimeStart";
 const colorDetails = 'darkslategrey';
 
 export function BigCourseCard({onPress}) {
     return (
-        <Pressable
+        <TouchableOpacity
             onPress={onPress}
-            style={big.container}>
+            style={big.container}
+            activeOpacity={0.7}
+        >
             <View>
                 <Image style={big.image} source={require('../../../assets/img/card-template.png')}/>
-                <View style={big.horizontal}>
-                    <View style={big.horizontal}>
-                        <AntDesign name="clockcircleo" size={20} color={colorDetails}/>
-                        <Text style={styles.textDetails}>1hr 45 min</Text>
-                    </View>
-                    <View style={big.horizontal}>
-                        <AntDesign name="staro" size={20} color={colorDetails}/>
-                        <Text style={styles.textDetails}>4.5</Text>
-                    </View>
-                </View>
+                <TimeStart/>
             </View>
-
             <Text style={big.title}>Advance Mathematics</Text>
-        </Pressable>)
+        </TouchableOpacity>)
 }
 
 export function SmallCourseCard({onPress}) {
     return (
-        <Pressable onPress={onPress} style={small.container}>
-
+        <TouchableOpacity onPress={onPress} style={small.container} activeOpacity={0.7}>
             <Image style={small.image} source={require('../../../assets/img/card-template.png')}/>
-
             <View>
-                <View style={small.horizontal}>
-                    <View style={[small.horizontal, big.mr6]}>
-                        <AntDesign style={big.mr6} name="clockcircleo" size={20} color={colorDetails}/>
-                        <Text style={styles.textDetails}>1hr 45 min</Text>
-                    </View>
-                    <View style={small.horizontal}>
-                        <AntDesign style={big.mr6} name="staro" size={20} color={colorDetails}/>
-                        <Text style={styles.textDetails}>4.5</Text>
-                    </View>
-                </View>
-
+                <TimeStart/>
                 <Text style={small.title}>Advance Mathematics</Text>
             </View>
-        </Pressable>
+        </TouchableOpacity>
     )
 }
 

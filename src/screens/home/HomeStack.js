@@ -14,7 +14,11 @@ export default function HomeStack() {
                     <EvilIcons name="bell" size={34} color="black"/>
                 )
             }}/>
-            <Stack.Screen name="CourseScreen" component={CourseScreen}/>
+            <Stack.Screen name="CourseScreen" component={CourseScreen} options={{
+                headerRight: () => (
+                    <EvilIcons name="heart" size={34} color="red" />
+                )
+            }}/>
         </Stack.Navigator>
     )
 }
