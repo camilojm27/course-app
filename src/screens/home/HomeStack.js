@@ -11,12 +11,12 @@ export default function HomeStack() {
         <Stack.Navigator>
             <Stack.Screen name="Home" component={HomeScreen} options={{
                 headerRight: () => (
-                    <EvilIcons name="bell" size={34} color="black"/>
+                    <EvilIcons name="bell" size={34} style={{ marginRight: 20 }} color="black"/>
                 )
             }}/>
             <Stack.Screen name="CourseScreen" component={CourseScreen} options={{
                 headerRight: () => (
-                    <EvilIcons name="heart" size={34} color="red" />
+                    <EvilIcons name="heart" size={34} style={{marginRight: 20}} color="red" />
                 )
             }}/>
         </Stack.Navigator>
