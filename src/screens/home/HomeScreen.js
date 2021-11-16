@@ -2,15 +2,15 @@ import React from 'react';
 import {Pressable, ScrollView, StyleSheet, Text, TextInput, View} from 'react-native';
 import {BigCourseCard, SmallCourseCard} from "./CourseCard";
 import {EvilIcons} from "@expo/vector-icons";
-import {RobotoCondensed_400Regular, RobotoCondensed_700Bold, useFonts,} from '@expo-google-fonts/dev';
+import { useFonts } from 'expo-font';
 import AppLoading from "expo-app-loading";
 
 
 export default function HomeScreen({navigation: {navigate}}) {
 
-    let [fontsLoaded] = useFonts({
-        RobotoCondensed_400Regular,
-        RobotoCondensed_700Bold,
+    const [fontsLoaded] = useFonts({
+        RobotoCondensed_400Regular: require('../../../assets/fonts/RobotoCondensed-Regular.ttf'),
+        RobotoCondensed_700Bold: require('../../../assets/fonts/RobotoCondensed-Bold.ttf'),
     });
 
     if (!fontsLoaded) {

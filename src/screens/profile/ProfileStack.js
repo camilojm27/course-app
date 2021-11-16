@@ -11,7 +11,7 @@ export default function ProfileStack({ navigation}) {
 
     return (
         <Stack.Navigator>
-            <Stack.Screen name="Home" component={ProfileScreen} options={{
+            <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{
                 headerRight: () => (
                     <SimpleLineIcons name="settings" size={24} style={{marginRight: 20}} onPress={() => {
                         navigation.navigate('SettingScreen');
